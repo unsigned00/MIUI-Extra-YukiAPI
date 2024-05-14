@@ -28,10 +28,10 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact  # 产物的名称，可以根据需要自定义
-        path: /artifact  # 要保存的产物路径，可以是文件或目录
+        path: artifact  # 要保存的产物路径，可以是文件或目录
 
     - name: Move Artifact to Workspace
-      run: mv /artifact $GITHUB_WORKSPACE/
+      run: mv artifact $GITHUB_WORKSPACE/
 
     - name: Commit Artifact
       run: |
