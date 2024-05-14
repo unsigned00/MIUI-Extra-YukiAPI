@@ -23,3 +23,20 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Archive Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact  # 产物的名称，可以根据需要自定义
+        path: /artifact  # 要保存的产物路径，可以是文件或目录
+
+    - name: Move Artifact to Workspace
+      run: mv /artifact $GITHUB_WORKSPACE/
+
+    - name: Commit Artifact
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add .
+        git commit -m "Add artifact"
+        git push
